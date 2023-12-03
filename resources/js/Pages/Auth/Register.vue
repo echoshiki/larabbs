@@ -5,12 +5,14 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import Captcha from '@/Components/Captcha.vue';
 
 const form = useForm({
     name: '',
     email: '',
     password: '',
     password_confirmation: '',
+    captcha: '',
 });
 
 const submit = () => {
@@ -18,6 +20,7 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
 </script>
 
 <template>
@@ -85,7 +88,23 @@ const submit = () => {
 
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
-
+           
+            <div class="mt-4">
+                <InputLabel for="captcha" value="Captcha" />
+                <div class="flex gap-2 items-center mt-1">
+                    <TextInput
+                        id="captcha"
+                        type="text"
+                        class="block w-1/2"
+                        v-model="form.captcha"
+                        name="captcha"
+                        required
+                    />
+                    <Captcha />
+                </div>
+                <InputError class="mt-2" :message="form.errors.captcha" />
+            </div>
+            
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('login')"

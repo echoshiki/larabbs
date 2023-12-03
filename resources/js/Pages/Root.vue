@@ -20,7 +20,3 @@
     </div>
     </GuestLayout>    
 </template>
-
-<style>
-
-</style>
